@@ -7,7 +7,8 @@
     "build": "babel src -d lib",
     "prepublish": "npm run build",
     "clean": "rm -rf lib/*",
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "test": "jest"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
