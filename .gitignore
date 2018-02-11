@@ -58,4 +58,4 @@ typings/
 .env
 
 # Ignore compiled
-.lib
+lib
