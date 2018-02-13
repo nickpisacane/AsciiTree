@@ -82,7 +82,7 @@ export default class Tree {
     if (this.alignment === 'left') {
       return node.left;
     }
-    return node.left + Math.ceil((node.width - node.value.length) / 2);
+    return node.left + Math.floor((node.width - node.value.length) / 2);
   }
 
   /**
@@ -96,7 +96,7 @@ export default class Tree {
     if (this.alignment === 'left') {
       return x;
     }
-    return x + Math.ceil(node.value.length / 2);
+    return x + Math.floor(node.value.length / 2);
   }
 
   /**
