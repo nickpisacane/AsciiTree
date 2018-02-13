@@ -4,7 +4,7 @@
 // in the primary API.
 export interface SimpleNodeObj {
   value: string;
-  children?: Array<Node>;
+  children?: Array<SimpleNode>;
 }
 
 // @see: SimpleNodeObj
@@ -20,8 +20,7 @@ export type NodeOptions = {
   left?: number;
 }
 
-// Node class.
-export class Node {
+export default class Node {
   position: number;
   parent: Node | null;
   value: string;
@@ -101,7 +100,7 @@ export class Node {
   /**
    * Iterate through all of the children of a given `Node`
    */
-  children(visitor: (node: Node) => void) {
+  forEachChild(visitor: (node: Node) => void) {
     const queue = [...this.children];
     while (queue.length) {
       const node = queue.shift();
