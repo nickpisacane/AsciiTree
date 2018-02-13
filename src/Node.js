@@ -1,7 +1,7 @@
 // @flow
 
-// NodeObj, and Node, are simplified nodes that will be accepted as inputs
-// in the primary API.
+// SimpleNodeObj and SimpleNode are simple ways of representing a Node-like
+// or Tree-like data-structure that can be easily transformed into a full `Node`
 export interface SimpleNodeObj {
   value: string;
   children?: Array<SimpleNode>;
