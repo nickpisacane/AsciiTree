@@ -18,8 +18,9 @@ export type Options = {
 };
 
 export default class Tree {
-  root: Node;
-  levels: Array<Array<Node>>;
+  _root: Node;
+  _levels: Array<Array<Node>>;
+
   space: number;
   vertical: string;
   horizontal: string;
@@ -32,8 +33,9 @@ export default class Tree {
     this.horizontal = (options.horizontal || '_')[0];
     this.verticalHeight = options.verticalHeight || 1;
     this.alignment = options.align || 'center';
-    this.root = Node.fromSimpleNode(root);
-    this.levels = this.root.getLevels();
+
+    this._root = Node.fromSimpleNode(root);
+    this._levels = this._root.getLevels();
     this._calculate();
   }
 
@@ -45,8 +47,8 @@ export default class Tree {
    * statically.
    */
   _calculate() {
-    for (let i = this.levels.length - 1; i >= 0; i--) {
-      const level = this.levels[i];
+    for (let i = this._levels.length - 1; i >= 0; i--) {
+      const level = this._levels[i];
 
       for (let j = 0; j < level.length; j++) {
         const node = level[j];
@@ -135,7 +137,7 @@ export default class Tree {
    * @return {Number}
    */
   height(): number {
-    const levelLength = this.levels.length;
+    const levelLength = this._levels.length;
     return (levelLength - 1) * (this.verticalHeight * 2) + levelLength;
   }
 
@@ -144,7 +146,7 @@ export default class Tree {
    * @return {Number}
    */
   width(): number {
-    return this.root.width;
+    return this._root.width;
   }
 
   /**
@@ -155,7 +157,7 @@ export default class Tree {
     const bitmap = new Bitmap(this.width(), this.height());
     let verticalOffset = 0;
 
-    this.levels.forEach((level, y) => {
+    this._levels.forEach((level, y) => {
       y += verticalOffset;
 
       level.forEach(node => {
