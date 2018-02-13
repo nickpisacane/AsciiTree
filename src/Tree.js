@@ -10,6 +10,7 @@ export type Alignment = 'left' | 'center';
 
 // Tree options type
 export type Options = {
+  root: SimpleNode,
   vertical?: string;
   horizontal?: string;
   space?: number;
@@ -27,14 +28,14 @@ export default class Tree {
   verticalHeight: number;
   alignment: Alignment;
 
-  constructor(root: SimpleNode, options?: Options = {}) {
+  constructor(options: Options) {
     this.space = options.space || 1;
     this.vertical = (options.vertical || '|')[0];
     this.horizontal = (options.horizontal || '_')[0];
     this.verticalHeight = options.verticalHeight || 1;
     this.alignment = options.align || 'center';
 
-    this._root = Node.fromSimpleNode(root);
+    this._root = Node.fromSimpleNode(options.root);
     this._levels = this._root.getLevels();
     this._calculate();
   }
