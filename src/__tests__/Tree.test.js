@@ -45,3 +45,23 @@ test('height', () => {
   expect(tree._root.height).toBe(3);
   expect(tree.height()).toBe(7);
 });
+
+test('multi-line', () => {
+  const tree = new Tree({
+    root: {
+      value: 'root',
+      children: [
+        {
+          value: 'multi\nline\ntext',
+          children: ['foo', 'bar'],
+        },
+        {
+          value: 'single',
+          children: ['child', 'child'],
+        },
+      ],
+    },
+  });
+
+  expect(tree.height()).toBe(9);
+});
