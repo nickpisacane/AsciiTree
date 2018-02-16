@@ -1,5 +1,7 @@
 // @flow
 
+import Text from './Text';
+
 // SimpleNodeObj and SimpleNode are simple ways of representing a Node-like
 // or Tree-like data-structure that can be easily transformed into a full `Node`
 export interface SimpleNodeObj {
@@ -25,6 +27,7 @@ export default class Node {
   position: number;
   parent: Node | null;
   value: string;
+  text: Text;
   children: Array<Node>;
   width: number;
   height: number;
@@ -67,6 +70,8 @@ export default class Node {
     this.left = 0;
 
     Object.assign(this, node);
+
+    this.text = new Text(this.value);
   }
 
   /**
