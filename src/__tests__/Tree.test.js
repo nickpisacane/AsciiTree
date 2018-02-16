@@ -25,3 +25,23 @@ test('basic', () => {
   // = 1 * 2 + 2 = 2 + 2 = 4
   expect(tree.height()).toBe(4);
 });
+
+test('height', () => {
+  const tree = new Tree({
+    root: {
+      value: 'foo',
+      children: [
+        {
+          value: 'bar',
+          children: [
+            'bang',
+          ]
+        },
+        'baz',
+      ],
+    },
+  });
+
+  expect(tree._root.height).toBe(3);
+  expect(tree.height()).toBe(7);
+});
