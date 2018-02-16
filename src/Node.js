@@ -17,6 +17,7 @@ export type NodeOptions = {
   value?: string;
   children?: Array<Node>;
   width?: number;
+  height?: number;
   left?: number;
 }
 
@@ -26,6 +27,7 @@ export default class Node {
   value: string;
   children: Array<Node>;
   width: number;
+  height: number;
   left: number;
 
   /**
@@ -61,6 +63,7 @@ export default class Node {
     this.value = '';
     this.children = [];
     this.width = 0;
+    this.height = 0;
     this.left = 0;
 
     Object.assign(this, node);
