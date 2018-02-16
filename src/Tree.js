@@ -56,8 +56,8 @@ export default class Tree {
 
         const childWidth = node.children.reduce((a, c) => a + c.width, 0);
         const childHeight = Math.max(0, ...node.children.map(c => c.height));
-        node.width = Math.max(node.value.length, childWidth) + this.space;
-        node.height = 1 + childHeight;
+        node.width = Math.max(node.text.width, childWidth) + this.space;
+        node.height = node.text.height + childHeight;
         node.left = 0;
 
         // If not the first child, we have to calculate an offset and apply
@@ -80,11 +80,11 @@ export default class Tree {
    * Get the horizontal alignment for a given `node`, based on `alignment`.
    * @param {Node} node The node to calculate alignmemt for.
    */
-  _alignX(node: Node): number {
+  _alignX(node: Node, width?: number = node.text.width): number {
     if (this.alignment === 'left') {
       return node.left;
     }
-    return node.left + Math.floor((node.width - node.value.length) / 2);
+    return node.left + Math.floor((node.width - width) / 2);
   }
 
   /**
@@ -98,7 +98,7 @@ export default class Tree {
     if (this.alignment === 'left') {
       return x;
     }
-    return x + Math.floor(node.value.length / 2);
+    return x + Math.floor(node.text.width / 2);
   }
 
   /**
@@ -107,9 +107,10 @@ export default class Tree {
    * @param  {Node} node   The node to connect.
    * @param  {Number} y      The vertical starting point for the branch.
    */
-  _drawVertical(bitmap: Bitmap, node: Node, y: number) {
+  _drawVertical(bitmap: Bitmap, node: Node, y: number, extra?: number = 0) {
     const x = this._alignVertical(node);
-    for (let i = 0; i < this.verticalHeight; i++) {
+    const len = this.verticalHeight + extra;
+    for (let i = 0; i < len; i++) {
       bitmap.writeString(x, y + i, this.vertical);
     }
   }
@@ -119,18 +120,16 @@ export default class Tree {
    * `alignment`.
    * @param  {Bitmap} bitmap The bitmap to draw to.
    * @param  {Number} y      The vertical position to draw on.
-   * @param  {Node} start  The node to start at.
-   * @param  {Node} end    The node to end at.
+   * @param  {Number} start  The position to start at.
+   * @param  {Number} end    The position to end at.
    */
   _drawHorizontal(
     bitmap: Bitmap,
     y: number,
-    start: Node,
-    end: Node
+    start: number,
+    end: number
   ) {
-    const s = this._alignVertical(start);
-    const f = this._alignVertical(end);
-    for (let i = s; i <= f; i++) {
+    for (let i = start; i <= end; i++) {
       bitmap.writeString(i, y, this.horizontal);
     }
   }
@@ -140,9 +139,12 @@ export default class Tree {
    * @return {Number}
    */
   height(): number {
-    const height = this._root.height;
     const levelLen = this._levels.length;
-    return height + (levelLen - 1) * (this.verticalHeight * 2);
+    const levelHeight = this._levels.reduce((a, level) => {
+      return a + Math.max(...level.map(n => n.text.height));
+    }, 0);
+
+    return levelHeight + (levelLen - 1) * (this.verticalHeight * 2);
   }
 
   /**
@@ -164,24 +166,35 @@ export default class Tree {
     this._levels.forEach((level, y) => {
       y += verticalOffset;
 
+      const levelHeight = Math.max(...level.map(n => n.text.height));
+
       level.forEach(node => {
-        const x = this._alignX(node);
-
         if (node.children.length) {
-          const start = node.children[0];
-          const end = node.children[node.children.length - 1];
-          this._drawHorizontal(bitmap, y + this.verticalHeight, start, end);
+          const start = this._alignVertical(node.children[0]);
+          const end = Math.max(
+            this._alignVertical(node.children[node.children.length - 1]),
+            this._alignVertical(node)
+          );
 
+          this._drawHorizontal(bitmap, y + this.verticalHeight + (levelHeight - 1), start, end);
+
+          // Draw a vertical branch above each child.
           node.children.forEach(child => {
-            this._drawVertical(bitmap, child, y + this.verticalHeight + 1);
+            this._drawVertical(bitmap, child, y + this.verticalHeight + levelHeight);
           });
 
-          this._drawVertical(bitmap, node, y + 1);
+          // Draw vertical branch below node.
+          this._drawVertical(bitmap, node, y + node.text.height, levelHeight - node.text.height);
         }
-        bitmap.writeString(x, y, node.value);
+
+        // bitmap.writeString(x, y, node.value);
+        node.text.lines.forEach((line, i) => {
+          let lineX = this._alignX(node, line.length);
+          bitmap.writeString(lineX, y + i, line);
+        });
       });
 
-      verticalOffset += (this.verticalHeight * 2);
+      verticalOffset += (levelHeight - 1) + (this.verticalHeight * 2);
     });
 
     return bitmap.toString();
