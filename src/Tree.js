@@ -10,13 +10,16 @@ export type Alignment = 'left' | 'center';
 
 // Tree options type
 export type Options = {
-  root: SimpleNode,
+  root: SimpleNode | string,
   vertical?: string;
   horizontal?: string;
   space?: number;
   verticalHeight?: number;
   align?: Alignment;
 };
+
+const resolveRoot = (root: SimpleNode | string): Node =>
+  typeof root === 'string' ? Node.fromXML(root) : Node.fromSimpleNode(root);
 
 export default class Tree {
   _root: Node;
@@ -32,7 +35,7 @@ export default class Tree {
   /**
    * Tree constructor.
    * @param {Options} options
-   * @param {SimpleNode} options.root The root node of the tree.
+   * @param {SimpleNode|String} options.root The root node of the tree json/xml.
    * @param {Number} [options.space = 1] The space between nodes (to the right).
    * @param {String} [options.vertical = '\'] The vertical branch character.
    * @param {String} [options.horizontal = '_'] The horizontal branch character.
@@ -49,7 +52,7 @@ export default class Tree {
     this.verticalHeight = options.verticalHeight || 1;
     this.alignment = options.align || 'center';
 
-    this._root = Node.fromSimpleNode(options.root);
+    this._root = resolveRoot(options.root);
     this._levels = this._root.getLevels();
     this._dirty = true;
   }
@@ -139,7 +142,7 @@ export default class Tree {
    */
   update(options: Options) {
     if (options.root) {
-      this._root = Node.fromSimpleNode(options.root);
+      this._root = resolveRoot(options.root);
       this._levels = this._root.getLevels();
       this._dirty = true;
     }
