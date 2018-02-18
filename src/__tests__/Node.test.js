@@ -1,5 +1,7 @@
 // @flow
 
+import fs from 'fs';
+import path from 'path';
 import Node from '../Node';
 
 test('it creates a Node from a string', () => {
@@ -32,6 +34,32 @@ test('it creates a Node from a SimpleNode', () => {
   expect(node.children[0].children[0].value).toBe('bar-1');
   expect(node.children[1].value).toBe('bang');
   expect(node.children[2].value).toBe('baz');
+});
+
+test('Node.fromXML', () => {
+  const xml = fs.readFileSync(path.join(__dirname, 'test.xml'), 'utf-8');
+  const node = Node.fromXML(xml);
+  expect(node.value).toBe('ROOT');
+  expect(node.text.lines).toEqual(['ROOT']);
+  expect(node.children).toHaveLength(3);
+
+  expect(node.children[0].value).toBe('Foo');
+  expect(node.children[0].text.lines).toEqual(['Foo'])
+  expect(node.children[0].children).toHaveLength(0);
+
+  expect(node.children[1].value).toBe('bang');
+  expect(node.children[1].text.lines).toEqual(['bang']);
+  expect(node.children[1].children).toHaveLength(2);
+  expect(node.children[1].children[0].value).toBe('Bang-1');
+  expect(node.children[1].children[0].text.lines).toEqual(['Bang-1']);
+  expect(node.children[1].children[1].value).toBe('Bang-2');
+  expect(node.children[1].children[1].text.lines).toEqual(['Bang-2']);
+
+  expect(node.children[2].text.lines).toEqual([
+    'multi',
+    'line',
+    'text',
+  ]);
 });
 
 test('Node#prevSib()', () => {

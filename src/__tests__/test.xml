@@ -1,0 +1,12 @@
+<n value="ROOT">
+  <n>Foo</n>
+  <bang>
+    <n>Bang-1</n>
+    <n>Bang-2</n>
+  </bang>
+  <n>
+    multi
+    line
+    text
+  </n>
+</n>
