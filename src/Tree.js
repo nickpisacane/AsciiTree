@@ -29,6 +29,19 @@ export default class Tree {
   verticalHeight: number;
   alignment: Alignment;
 
+  /**
+   * Tree constructor.
+   * @param {Options} options
+   * @param {SimpleNode} options.root The root node of the tree.
+   * @param {Number} [options.space = 1] The space between nodes (to the right).
+   * @param {String} [options.vertical = '\'] The vertical branch character.
+   * @param {String} [options.horizontal = '_'] The horizontal branch character.
+   * @param {Alignment} [options.align = 'center'] The text/branch alignment.
+   * @param {Number} [options.verticalHeight = 1] The number of vertical
+   *                                              characters between a node and
+   *                                              a horizontal branch.
+   *
+   */
   constructor(options: Options) {
     this.space = options.space || 1;
     this.vertical = (options.vertical || '|')[0];
@@ -40,7 +53,7 @@ export default class Tree {
     this._levels = this._root.getLevels();
     this._dirty = true;
   }
-  
+
   /**
    * Get the horizontal alignment for a given `node`, based on `alignment`.
    * @param {Node} node The node to calculate alignmemt for.
