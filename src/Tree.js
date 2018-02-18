@@ -55,9 +55,7 @@ export default class Tree {
         const node = level[j];
 
         const childWidth = node.children.reduce((a, c) => a + c.width, 0);
-        const childHeight = Math.max(0, ...node.children.map(c => c.height));
         node.width = Math.max(node.text.width, childWidth) + this.space;
-        node.height = node.text.height + childHeight;
         node.left = 0;
 
         // If not the first child, we have to calculate an offset and apply

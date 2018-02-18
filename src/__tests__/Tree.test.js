@@ -42,7 +42,6 @@ test('height', () => {
     },
   });
 
-  expect(tree._root.height).toBe(3);
   expect(tree.height()).toBe(7);
 });
 
