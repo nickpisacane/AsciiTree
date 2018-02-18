@@ -1,5 +1,6 @@
 // @flow
 
+import parseXML from 'xml-parser';
 import Text from './Text';
 
 // SimpleNodeObj and SimpleNode are simple ways of representing a Node-like
@@ -21,6 +22,13 @@ export type NodeOptions = {
   width?: number;
   left?: number;
 }
+
+const xmlToSimpleNode = (root: XMLNode): SimpleNode => {
+  return {
+    value: root.attributes.value || root.content || root.name,
+    children: root.children.map(xmlToSimpleNode),
+  };
+};
 
 export default class Node {
   position: number;
@@ -53,6 +61,12 @@ export default class Node {
     }
 
     return node;
+  }
+
+  static fromXML(xml: string): Node {
+    const xmlRoot = parseXML(xml);
+    const simpleRoot = xmlToSimpleNode(xmlRoot.root);
+    return Node.fromSimpleNode(simpleRoot);
   }
 
   /**
