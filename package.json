@@ -25,5 +25,8 @@
     "eslint-plugin-relay": "^0.0.21",
     "flow-bin": "^0.65.0",
     "jest": "^22.2.2"
+  },
+  "dependencies": {
+    "xml-parser": "^1.2.1"
   }
 }
