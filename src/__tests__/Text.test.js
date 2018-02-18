@@ -22,3 +22,10 @@ test('removes tabs', () => {
   expect(text.width).toBe(5);
   expect(text.height).toBe(2);
 });
+
+it('handles blank lines', () => {
+  const text = new Text('multi\n    ');
+  expect(text.lines).toEqual(['multi']);
+  expect(text.width).toBe(5);
+  expect(text.height).toBe(1);
+});
