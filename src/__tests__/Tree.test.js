@@ -11,6 +11,8 @@ test('basic', () => {
     space: 4,
   });
 
+  tree.layout();
+
   // len('bar') + 4 = 7
   expect(tree._root.children[0].width).toBe(7);
   // len('bang') + 4 = 8
