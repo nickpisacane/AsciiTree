@@ -10,7 +10,6 @@ import Tree from './Tree';
 
 const EXEC_NAME = 'ascii-tree';
 const VERSION = pkg.version;
-const ALIGNMENTS = ['center', 'left'];
 
 const helpMsg = `
 ${EXEC_NAME} ${VERSION}
