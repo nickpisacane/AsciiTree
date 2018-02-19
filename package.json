@@ -27,6 +27,7 @@
     "jest": "^22.2.2"
   },
   "dependencies": {
-    "xml-parser": "^1.2.1"
+    "xml-parser": "^1.2.1",
+    "yargs": "^11.0.0"
   }
 }
