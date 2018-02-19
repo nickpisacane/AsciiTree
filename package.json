@@ -11,6 +11,9 @@
     "test": "jest",
     "test:watch": "jest --watch"
   },
+  "bin": {
+    "ascii-tree": "./lib/cli.js"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.1",
