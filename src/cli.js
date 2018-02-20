@@ -101,7 +101,7 @@ const main = async () => {
   try {
     const options = await getOptions();
     const tree = new Tree(options);
-    process.stdout.write(tree.render());
+    console.log(tree.render());
   } catch (err) {
     console.error(err.message);
     process.exit(1);
