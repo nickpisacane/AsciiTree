@@ -113,6 +113,11 @@ const getOptions = async (): Promise<Options> => {
  * Main CLI entry.
  */
 const main = async () => {
+  const {argv} = yargs;
+  if (argv.h || argv.help) {
+    return help();
+  }
+  
   try {
     const options = await getOptions();
     const tree = new Tree(options);
@@ -123,7 +128,7 @@ const main = async () => {
   }
 };
 
-// Run main, if error, throw on next tick. 
+// Run main, if error, throw on next tick.
 main().catch(err => {
   process.nextTick(() => { throw err; });
 });
