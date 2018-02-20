@@ -27,11 +27,19 @@ Options:
   --align          The text alignment (center, left)
 `;
 
+/**
+ * Display help message to stderr and exit with error code 1.
+ */
 const help = () => {
   console.error(helpMsg);
   process.exit(1);
 };
 
+/**
+ * Promisify `fs.readFile`. Reads as UTF-8.
+ * @param  {String} fileName The file.
+ * @return {Promise<string>}
+ */
 const readFile = (fileName: string): Promise<string> =>
   new Promise((resolve, reject) => {
     fs.readFile(fileName, 'utf-8', (err, data) => {
@@ -40,6 +48,10 @@ const readFile = (fileName: string): Promise<string> =>
     });
   });
 
+/**
+ * Parse the options from `yargs.argv`.
+ * @type {Promise<Options>}
+ */
 const getOptions = async (): Promise<Options> => {
   const {argv} = yargs;
   const fileName = argv._[0];
@@ -97,6 +109,9 @@ const getOptions = async (): Promise<Options> => {
   return options;
 };
 
+/**
+ * Main CLI entry.
+ */
 const main = async () => {
   try {
     const options = await getOptions();
@@ -108,6 +123,7 @@ const main = async () => {
   }
 };
 
+// Run main, if error, throw on next tick. 
 main().catch(err => {
   process.nextTick(() => { throw err; });
 });
