@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 8px;
+  background: #22a30b;
+}
+
+.header__title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.header__links {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header__link {
+  color: #fff;
+  text-decoration: none;
+}
+.header__link:not(last-of-type) {
+  margin-right: 12px;
+}

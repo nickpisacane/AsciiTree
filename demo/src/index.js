@@ -3,5 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<div>TODO</div>, document.getElementById('root'));
+import Header from './components/Header';
+
+const App = () => (
+  <div>
+    <Header />
+  </div>
+)
+
+ReactDOM.render(<App/>, document.getElementById('root'));
 registerServiceWorker();
