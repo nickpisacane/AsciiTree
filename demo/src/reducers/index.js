@@ -1,6 +1,7 @@
 // @flow
 
 import {combineReducers} from 'redux';
+import type {DispatchAPI} from 'redux';
 
 import type {EditorState, EditorAction} from './editor';
 import editor from './editor';
@@ -12,7 +13,7 @@ export type State = {
   options: OptionsState;
 };
 export type Action = EditorAction | OptionsAction;
-export type Dispatch = (action: Action) => void;
+export type Dispatch = DispatchAPI<Action>;
 
 export default combineReducers({
   editor,
