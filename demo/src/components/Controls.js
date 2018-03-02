@@ -3,7 +3,6 @@
 import * as React from 'react';
 import type {Options} from '../reducers/options';
 import Select from './Select';
-import IconButton from './IconButton';
 import './Controls.css';
 
 export type Props = {
