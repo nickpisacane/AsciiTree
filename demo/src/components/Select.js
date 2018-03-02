@@ -3,16 +3,15 @@
 import React, { Component } from 'react';
 import './Select.css';
 
-type SelectEntry = {
+type SelectOption = {
   value: any;
   label: string;
 };
 
 type Props = {
-  label: string;
   selected: string;
-  values: Array<SelectEntry>;
-  onChange: (entry: SelectEntry) => void;
+  options: Array<SelectOption>;
+  onChange: (option: SelectOption) => void;
 };
 
 type State = {
@@ -20,18 +19,15 @@ type State = {
 };
 
 export default class Select extends Component<Props, State> {
-  _select: HTMLDivElement;
-  _dropdown: HTMLDivElement;
-
-  _selectRef = (node: null | HTMLDivElement) => {
-    if (node) {
-      this._select = node;
-    }
+  state = {
+    open: false,
   };
 
-  _dropdownRef = (node: null | HTMLDivElement) => {
-    if (node) {
-      this._dropdown = node;
+  _handleDocumentClick = (event: Event) => {
+    const t = event.target;
+    const abort = t instanceof HTMLElement && t.matches('.select, .select > *');
+    if (this.state.open && !abort) {
+      this.setState({ open: false });
     }
   };
 
@@ -39,38 +35,50 @@ export default class Select extends Component<Props, State> {
     this.setState({ open: !this.state.open });
   };
 
+  _createOptionClickHandler = (option: SelectOption) => {
+    return (event: Event) => {
+      event.stopPropagation();
+      this.props.onChange(option);
+      this.setState({ open: false });
+    };
+  };
+
   componentDidMount() {
-    if (this._select && this._dropdown) {
-      const rect = this._select.getBoundingClientRect();
-      this._dropdown.style.top = `${rect.top}px`;
-      this._dropdown.style.left = `${rect.left}px`;
-      this._dropdown.style.width = `${rect.width}px`;
-    }
+    document.addEventListener('click', this._handleDocumentClick, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this._handleDocumentClick, false);
   }
 
   render() {
-    const {label, selected, values} = this.props;
+    const {selected, options, ...rest} = this.props;
     const {open} = this.state;
 
     return (
       <div className='select'
         onClick={this._handleSelectClick}
+        {...rest}
       >
         <div
           className={`select__dropdown ${open ? 'select__dropdown--open' : ''}`}
-          ref={this._dropdownRef}
         >
           <div className='select__dropdown-items'>
-            {values.map(value => (
-              <div className={`select__dropdown-item ${value.label === selected ? 'select__dropdown-item--selected' : ''}`}>
-                {label}
+            {options.map(option => (
+              <div
+                className={`select__dropdown-item ${option.label === selected ? 'select__dropdown-item--selected' : ''}`}
+                key={option.label}
+                onClick={this._createOptionClickHandler(option)}
+              >
+                {option.label}
               </div>
             ))}
           </div>
         </div>
-        <div className='select__label'>
-          {label}
+        <div className='select__value'>
+          {selected}
         </div>
+        <span className='fa fa-caret-down select__caret' />
       </div>
     );
   }
