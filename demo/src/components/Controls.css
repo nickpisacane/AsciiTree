@@ -1,0 +1,17 @@
+.controls {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.control {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+}
+
+.control__label {
+  font-weight: bold;
+  margin-right: 12px;
+}
