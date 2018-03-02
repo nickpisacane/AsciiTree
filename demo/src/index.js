@@ -6,11 +6,16 @@ import registerServiceWorker from './registerServiceWorker';
 import createStore from './createStore';
 import Header from './components/Header';
 
+import Controls from './components/ConnectedControls';
+
 const store = createStore();
 
 const App = () => (
   <Provider store={store}>
-    <Header />
+    <div>
+      <Header />
+      <Controls />
+    </div>
   </Provider>
 );
 
