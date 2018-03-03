@@ -32,6 +32,7 @@ export default class Controls extends React.Component<Props> {
       format,
       onFormatChange,
       onOptionsChange,
+      onReset,
       ...rest
     } = this.props;
 
@@ -51,6 +52,7 @@ export default class Controls extends React.Component<Props> {
           round
           secondary
           icon='undo'
+          onClick={onReset}
         />
       </div>
     );
