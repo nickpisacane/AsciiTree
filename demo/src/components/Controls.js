@@ -3,6 +3,7 @@
 import * as React from 'react';
 import type {Options} from '../reducers/options';
 import Select from './Select';
+import Button from './Button';
 import './Controls.css';
 
 export type Props = {
@@ -46,6 +47,11 @@ export default class Controls extends React.Component<Props> {
             ]}
           />
         </Control>
+        <Button
+          round
+          secondary
+          icon='undo'
+        />
       </div>
     );
   }
