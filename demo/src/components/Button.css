@@ -1,3 +1,45 @@
 .button {
+  background: none;
+  outline: none;
+  border: none;
+  background: var(--color-default);
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out;
+}
+.button:hover {
+  background: var(--color-default-light);
+}
 
+.button--round {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.button--primary {
+  background: var(--color-primary);
+}
+.button--primary:hover {
+  background: var(--color-primary-light);
+}
+
+.button--secondary {
+  background: var(--color-secondary);
+}
+.button--secondary:hover {
+  background: var(--color-secondary-light);
+}
+
+.button__label {
+  color: #fff;
+  margin-right: 8px;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.button__icon {
+  color: #fff;
 }
