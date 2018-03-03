@@ -25,7 +25,7 @@ const getClassName = (props: Props): string => {
   return classNames.join(' ');
 };
 
-export default class IconButton extends React.Component<Props> {
+export default class Button extends React.Component<Props> {
   render() {
     const {
       label,
