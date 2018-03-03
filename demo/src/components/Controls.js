@@ -53,6 +53,7 @@ export default class Controls extends React.Component<Props> {
           secondary
           icon='undo'
           onClick={onReset}
+          title='Reset'
         />
       </div>
     );
