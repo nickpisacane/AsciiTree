@@ -1,3 +1,12 @@
+:root {
+  --color-default: #44423e;
+  --color-default-light: #605e5a;
+  --color-primary: #22a30b;
+  --color-primary-light: #38d81c;
+  --color-secondary: #7f4700;
+  --color-secondary-light: #b76a09;
+}
+
 body {
   margin: 0;
   padding: 0;
