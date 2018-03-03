@@ -1,0 +1,52 @@
+.input {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 8px 0px 0px 8px;
+  position: relative;
+  width: 150px;
+}
+
+.input__input {
+  outline: none;
+  font-weight: 400;
+  font-size: 1em;
+  border: none;
+  display: inline-block;
+  padding: 0px 8px 8px 0px;
+  border-bottom: 2px solid var(--color-secondary);
+  box-sizing: border-box;
+  width: 100%;
+  font-family: 'Source Code Pro', sans-serif;
+  transition: border-color 200ms ease-in-out;
+}
+.input__input:focus {
+  border-color: var(--color-primary);
+}
+.input__input[type='number'] {
+    -moz-appearance:textfield;
+}
+.input__input[type=number]::-webkit-inner-spin-button,
+.input__input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.input__number-controls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  color: var(--color-secondary);
+  transition: color 200ms ease-in-out;
+}
+.input__input:focus + .input__number-controls {
+  color: var(--color-primary);
+}
+
+.input__number-control {
+  cursor: pointer;
+}
