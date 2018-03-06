@@ -1,6 +1,6 @@
 // @flow
 
-type EditorFormat = 'xml' | 'json';
+export type EditorFormat = 'xml' | 'json';
 
 type UpdateCodeAction = {
   type: 'EDITOR_UPDATE_CODE';
