@@ -140,13 +140,15 @@ export default class Controls extends React.Component<Props> {
             ]}
           />
         </Control>
-        <Button
-          round
-          secondary
-          icon='undo'
-          onClick={onReset}
-          title='Reset'
-        />
+        <Control label='Reset'>
+          <Button
+            round
+            secondary
+            icon='undo'
+            onClick={onReset}
+            title='Reset'
+          />
+        </Control>
       </div>
     );
   }

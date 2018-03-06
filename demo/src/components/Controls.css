@@ -1,20 +1,23 @@
 .controls {
   display: flex;
   justify-content: space-around;
-  align-items: center;
   box-sizing: border-box;
   padding: 8px;
 }
 
 .control {
-  display: inline-flex;
+  display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+}
+.control:not(last-of-type) {
+  margin-right: 8px;
 }
 
 .control__label {
   font-weight: bold;
   margin-right: 12px;
   text-align: center;
+  flex: 1;
 }
