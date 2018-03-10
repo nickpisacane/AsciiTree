@@ -11,7 +11,7 @@ export const toggleControls = (): ToggleControlsAction => ({
 export type UIAction = ToggleControlsAction;
 
 export type UIState = {
-  controls: bool;
+  controls: boolean;
 };
 
 const initialState: UIState = {
