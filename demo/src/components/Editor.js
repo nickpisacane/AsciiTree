@@ -8,6 +8,8 @@ import 'brace/mode/json';
 import 'brace/mode/xml';
 import 'brace/theme/github';
 
+import './Editor.css';
+
 type Props = {
   code: string;
   format: 'xml' | 'json';
@@ -26,6 +28,15 @@ export default class Editor extends React.Component<Props> {
           name='AsciiTreeEditor'
           onChange={onChange}
           value={code}
+          editorProps={{
+            $blockScrolling: true,
+          }}
+          width='100%'
+          height='100%'
+          ref={node => {
+            console.log('NODE: ', node);
+            window.editor = node;
+          }}
         />
       </div>
     );
