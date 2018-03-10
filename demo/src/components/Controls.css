@@ -1,5 +1,7 @@
 .controls {
+  height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   box-sizing: border-box;
   padding: 8px;
@@ -12,7 +14,7 @@
   flex-direction: column;
 }
 .control:not(last-of-type) {
-  margin-right: 8px;
+  margin-bottom: 8px;
 }
 
 .control__label {
