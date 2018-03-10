@@ -22,6 +22,14 @@
 .header__link {
   color: #fff;
   text-decoration: none;
+  box-sizing: border-box;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 1.5em;
+  transition: color 200ms ease-in-out;
+}
+.header__link:hover {
+  color: var(--color-secondary);
 }
 .header__link:not(last-of-type) {
   margin-right: 12px;
