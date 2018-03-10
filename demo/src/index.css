@@ -7,8 +7,18 @@
   --color-secondary-light: #b76a09;
 }
 
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: 'Source Code Pro', sans-serif;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
 }

@@ -4,20 +4,14 @@ import {Provider} from 'react-redux';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 import createStore from './createStore';
-import Header from './components/Header';
+import App from './components/App';
 
-import Controls from './components/ConnectedControls';
 
 const store = createStore();
 
-const App = () => (
+ReactDOM.render((
   <Provider store={store}>
-    <div>
-      <Header />
-      <Controls />
-    </div>
+    <App />
   </Provider>
-);
-
-ReactDOM.render(<App/>, document.getElementById('root'));
+), document.getElementById('root'));
 registerServiceWorker();
