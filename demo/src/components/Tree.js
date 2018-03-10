@@ -2,9 +2,8 @@
 
 import React, {Component} from 'react';
 
-import Tree from '../../../src/Tree';
-import type {Options} from '../../../src/Tree';
-import type {SimpleNode} from '../../../src/Node';
+import Tree from '@nindaff/ascii-tree';
+import type {Options, SimpleNode} from '@nindaff/ascii-tree';
 
 import './Tree.css';
 
