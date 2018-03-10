@@ -1,5 +1,7 @@
 // @flow
 
+import transform from '../utils/transform';
+
 export type EditorFormat = 'xml' | 'json';
 
 type UpdateCodeAction = {
@@ -34,6 +36,20 @@ const initialState: EditorState = {
   format: 'json',
 };
 
+const handleUpdateFormat = (state: EditorState, format: EditorFormat): State => {
+  const newState = Object.assign({}, state, { format });
+
+  if (state.code) {
+    try {
+      newState.code = transform(state.format, state.code);
+    } catch (err) {
+      console.error('Failed to Transform: ', err)
+    }
+  }
+
+  return newState;
+}
+
 export default function editor(
   state: EditorState = initialState,
   action: EditorAction
@@ -42,7 +58,7 @@ export default function editor(
     case 'EDITOR_UPDATE_CODE':
       return Object.assign({}, state, { code: action.code });
     case 'EDITOR_UPDATE_FORMAT':
-      return Object.assign({}, state, { format: action.format });
+      return handleUpdateFormat(state, action.format);
   }
 
   return state;
