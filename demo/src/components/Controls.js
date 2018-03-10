@@ -54,7 +54,7 @@ export default class Controls extends React.Component<Props> {
   };
 
   _handleFormatChange = ({value}: { label: string; value: any }) => {
-    if (value !== 'xml' && value !== 'center') {
+    if (value !== 'xml' && value !== 'json') {
       throw new Error(`Invalid Format: ${value.toString()}`);
     }
     this.props.onFormatChange((value: 'xml' | 'json'));
