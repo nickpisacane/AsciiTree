@@ -1,7 +1,7 @@
 {
   "name": "@nindaff/ascii-tree",
-  "version": "0.0.1",
-  "main": "index.js",
+  "version": "0.0.2",
+  "main": "lib/index.js",
   "license": "MIT",
   "scripts": {
     "prepack": "npm run prepack:build && npm run prepack:flow",
