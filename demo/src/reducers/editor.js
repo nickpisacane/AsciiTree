@@ -1,6 +1,7 @@
 // @flow
 
 import transform from '../utils/transform';
+import defaultCode from '../defaultCode';
 
 export type EditorFormat = 'xml' | 'json';
 
@@ -32,8 +33,8 @@ export type EditorState = {
 };
 
 const initialState: EditorState = {
-  code: '',
-  format: 'json',
+  code: defaultCode,
+  format: 'xml',
 };
 
 const handleUpdateFormat = (state: EditorState, format: EditorFormat): State => {
