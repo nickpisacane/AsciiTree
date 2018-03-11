@@ -6,7 +6,6 @@ import registerServiceWorker from './registerServiceWorker';
 import createStore from './createStore';
 import App from './components/App';
 
-
 const store = createStore();
 
 ReactDOM.render((
