@@ -1,15 +1,17 @@
 // @flow
 
-import React, {Component} from 'react';
+import * as React from 'react';
+import type {Options} from '@nindaff/ascii-tree';
+import isEqual from 'deep-equal';
+import type {EditorFormat} from '../reducers/editor';
+import AsyncTree from '../utils/AsyncTree';
 
-import Tree from '@nindaff/ascii-tree';
-import type {Options, SimpleNode} from '@nindaff/ascii-tree';
 
 import './Tree.css';
 
 type Props = {
   input: string;
-  inputType: 'xml' | 'json';
+  format: EditorFormat;
   options: $Shape<Options>;
 };
 
@@ -17,42 +19,34 @@ type State = {
   tree: string;
 };
 
-export default class TreeComponent extends Component<Props, State> {
-  _tree: Tree;
+export default class TreeComponent extends React.Component<Props, State> {
   state: State = {
     tree: '',
   };
 
-  getTreeOptions(): Options {
-    const {input, inputType, options} = this.props;
+  handleRender = (tree: string) => {
+    this.setState({ tree });
+  };
 
-    let root: SimpleNode | string;
-    if (inputType === 'json') {
-      root = (JSON.parse(input): SimpleNode);
-    } else {
-      root = input;
-    }
-
-    return Object.assign({}, options, { root });
+  componentDidMount() {
+    AsyncTree.addListener(this.handleRender);
   }
 
-  updateTree() {
-    try {
-      const options = this.getTreeOptions()
-      if (!this._tree) {
-        this._tree = new Tree(options);
-      } else {
-        this._tree.update(options);
-      }
-      const output = this._tree.render();
-      this.setState({ tree: output });
-    } catch (err) {
-      console.error('Tree Error: ', err);
-    }
+  componentWillUnmount() {
+    AsyncTree.removeListener(this.handleRender);
+  }
+
+  shouldUpdateTree(prevProps: Props, nextProps: Props) {
+    return prevProps.input !== nextProps.input ||
+      prevProps.format !== nextProps.format ||
+      !isEqual(prevProps.options, nextProps.options);
   }
 
   componentDidUpdate(prevProps: Props) {
-    this.updateTree();
+    if (this.shouldUpdateTree(prevProps, this.props)) {
+      console.log('Updating Tree')
+      AsyncTree.update(this.props);
+    }
   }
 
   render() {
