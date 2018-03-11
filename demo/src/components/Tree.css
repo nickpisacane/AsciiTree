@@ -1,5 +1,8 @@
 .tree {
-  overflow: auto;
+  overflow: scroll;
+  height: 100%;
 }
 
-.tree__text {}
+.tree__text {
+  font-family: monospace;
+}

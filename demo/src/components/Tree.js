@@ -28,6 +28,9 @@ export default class TreeComponent extends React.Component<Props, State> {
 
   componentDidMount() {
     AsyncTree.addListener(this.handleRender);
+    if (this.props.input) {
+      AsyncTree.update(this.props);
+    }
   }
 
   componentWillUnmount() {
