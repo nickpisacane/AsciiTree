@@ -5,8 +5,6 @@ import type {Options} from '@nindaff/ascii-tree';
 import isEqual from 'deep-equal';
 import type {EditorFormat} from '../reducers/editor';
 import AsyncTree from '../utils/AsyncTree';
-
-
 import './Tree.css';
 
 type Props = {
@@ -44,7 +42,6 @@ export default class TreeComponent extends React.Component<Props, State> {
 
   componentDidUpdate(prevProps: Props) {
     if (this.shouldUpdateTree(prevProps, this.props)) {
-      console.log('Updating Tree')
       AsyncTree.update(this.props);
     }
   }
