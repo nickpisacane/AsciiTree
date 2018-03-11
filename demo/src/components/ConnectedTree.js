@@ -6,7 +6,7 @@ import Tree from './Tree';
 
 const mapStateToProps = (state: State) => ({
   input: state.editor.code,
-  inputType: state.editor.format,
+  format: state.editor.format,
   options: state.options,
 });
 const mapDispatchToProps = (dispatch: Dispatch) => ({})
