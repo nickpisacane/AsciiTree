@@ -23,7 +23,6 @@ class AsyncTree {
 
   constructor() {
     this.worker = new TreeWorker();
-    console.log('this.worker: ', this.worker);
     this.listeners = [];
     this.init();
   }
@@ -31,7 +30,6 @@ class AsyncTree {
   init() {
     this.worker.onmessage = (event: any) => {
       const data = (event.data: UpdateMessage);
-      console.log('data: ', data);
       if (data.name === 'render') {
         this.listeners.forEach(listener => listener(data.data));
       }
