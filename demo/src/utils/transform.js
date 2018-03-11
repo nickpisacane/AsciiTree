@@ -15,7 +15,7 @@ const jsonToXML = (obj: any, tabLevel: number = 0): string => {
     return '';
   }
 
-  return `${tab}<node value="${obj.value}">\n` +
+  return `${tab}<node value="${value}">\n` +
     (children.length
       ? `${children.map(c => jsonToXML(c, tabLevel + 1)).join('\n')}\n`
       : ''
