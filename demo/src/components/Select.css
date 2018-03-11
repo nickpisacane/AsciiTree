@@ -25,7 +25,7 @@
   z-index: 2000;
   top: 100%;
   left: 0;
-  min-width: 150px;
+  min-width: 100%;
   background: #fff;
   overflow: hidden;
   transform: scaleY(0);
