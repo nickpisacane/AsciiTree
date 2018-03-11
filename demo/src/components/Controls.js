@@ -86,10 +86,23 @@ export default class Controls extends React.Component<Props> {
 
     return (
       <div className='controls'>
+        <div className='controls__reset'>
+          <div className='controls__label'>
+            Reset
+          </div>
+          <Button
+            round
+            secondary
+            icon='undo'
+            onClick={onReset}
+            title='Reset'
+          />
+        </div>
         <Control label='Format'>
           <Select
             selected={format}
             onChange={this._handleFormatChange}
+            style={{width: '100%'}}
             options={[
               {value: 'xml', label: 'xml'},
               {value: 'json', label: 'json'},
@@ -134,19 +147,11 @@ export default class Controls extends React.Component<Props> {
           <Select
             selected={options.align}
             onChange={this._handleAlignChange}
+            style={{width: '100%'}}
             options={[
               {value: 'left', label: 'left'},
               {value: 'center', label: 'center'},
             ]}
-          />
-        </Control>
-        <Control label='Reset'>
-          <Button
-            round
-            secondary
-            icon='undo'
-            onClick={onReset}
-            title='Reset'
           />
         </Control>
       </div>
