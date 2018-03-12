@@ -1,26 +1,31 @@
 // @flow
 
-export default `<root>
-  <node value="Value Attribute"/>
-  <node>
-    Multi-line text
-    is rendered on
-    multiple lines!
-  </node>
-  <foo>
-    <bar />
-    <bang>
-      <bang-1/>
-      <bang-2/>
-      <bang-3/>
-      <bang-4/>
-    </bang>
-  </foo>
-  <you>
-    <get>
-      <the>
-        <message />
-      </the>
-    </get>
-  </you>
-</root>`
+export default `<JSFrameworks value="(some) JavaScript Frameworks/Libraries">
+    <UI>
+        User interface
+
+        <React />
+        <Angular />
+        <Vue />
+    </UI>
+    <testing value="Unit Testing">
+        <Mocha />
+        <Jest />
+        <Assertion>
+            <Chai />
+            <Should />
+        </Assertion>
+    </testing>
+    <Bundling>
+        <Webpack />
+        <Browserify />
+        <Parcel />
+    </Bundling>
+    <WTF>
+        <this value="ASCII Tree" />
+    </WTF>
+    <others>
+        The rest of the
+        universe...
+    </others>
+</JSFrameworks>`
