@@ -4,12 +4,13 @@ import * as React from 'react';
 
 import './Button.css';
 
-type Props = {
+export type Props = {
   label?: string;
   icon?: string;
   primary?: boolean;
   secondary?: boolean;
   round?: boolean;
+  className?: string;
 };
 
 const getClassName = (props: Props): string => {
@@ -22,10 +23,22 @@ const getClassName = (props: Props): string => {
   if (props.round) {
     classNames.push('button--round');
   }
+  if (props.className) {
+    classNames.push(props.className);
+  }
   return classNames.join(' ');
 };
 
 export default class Button extends React.Component<Props> {
+  _button: HTMLButtonElement | null = null;
+  _buttonRef = (button: HTMLButtonElement | null) => {
+    this._button = button;
+  };
+
+  button(): HTMLButtonElement | null {
+    return this._button;
+  }
+
   render() {
     const {
       label,
@@ -33,6 +46,7 @@ export default class Button extends React.Component<Props> {
       primary,
       secondary,
       round,
+      className,
       ...rest
     } = this.props;
 
@@ -40,6 +54,7 @@ export default class Button extends React.Component<Props> {
       <button
         className={getClassName(this.props)}
         {...rest}
+        ref={this._buttonRef}
       >
         {!!label && (
           <span className='button__label'>{label}</span>
