@@ -5,6 +5,7 @@ import type {Options} from '@nindaff/ascii-tree';
 import isEqual from 'deep-equal';
 import type {EditorFormat} from '../reducers/editor';
 import AsyncTree from '../utils/AsyncTree';
+import ClipboardButton from './ClipboardButton';
 import './Tree.css';
 
 type Props = {
@@ -54,6 +55,13 @@ export default class TreeComponent extends React.Component<Props, State> {
 
     return (
       <div className='tree'>
+        {tree.length > 0 && (
+          <ClipboardButton
+            className='tree__clipboard-button'
+            text={tree}
+            label='Copy to clipboard'
+          />
+        )}
         <pre className='tree__text'>
           {tree}
         </pre>
