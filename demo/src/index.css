@@ -23,3 +23,15 @@ body {
   height: 100%;
   width: 100%;
 }
+
+::-webkit-scrollbar {
+  width: 18px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.22);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-secondary);
+}
