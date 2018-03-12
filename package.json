@@ -32,6 +32,7 @@
     "jest": "^22.2.2"
   },
   "dependencies": {
+    "clipboard": "^2.0.0",
     "xml-parser": "^1.2.1",
     "yargs": "^11.0.0"
   }
