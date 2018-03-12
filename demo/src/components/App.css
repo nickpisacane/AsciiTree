@@ -27,7 +27,6 @@
 }
 
 .app__pane {
-  overflow-x: hidden;
   box-sizing: border-box;
   height: 100%;
 }
