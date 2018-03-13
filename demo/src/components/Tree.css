@@ -5,8 +5,12 @@
 
 .tree__clipboard-button {
   position: absolute;
-  top: 16px;
+  top: 0;
   right: 16px;
+}
+
+.tree__clipboard-button:before {
+  position: absolute;
 }
 
 .tree__text {
