@@ -29,7 +29,7 @@ class App extends React.Component<Props> {
             <Controls />
           </div>
           <div className='app__split-pane-container'>
-            <SplitPane split='vertical' defaultSize='50%'>
+            <SplitPane split='vertical' defaultSize='30%'>
               <div className='app__pane'>
                 <Editor />
               </div>
