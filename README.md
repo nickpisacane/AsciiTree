@@ -3,7 +3,7 @@
 Generate well-structured textual trees from JSON or XML.
 
 # Demo
-[https://nickpisacane.github.io/AsciiTree](ASCII Tree Demo)
+[ASCII Tree Demo](https://nickpisacane.github.io/AsciiTree)
 
 # Installation
 
