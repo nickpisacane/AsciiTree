@@ -2,6 +2,7 @@
   "name": "demo",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://nickpisacane.github.io/AsciiTree",
   "dependencies": {
     "@nindaff/ascii-tree": "^0.0.2",
     "autoprefixer": "7.1.6",
