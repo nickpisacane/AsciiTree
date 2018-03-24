@@ -27,6 +27,9 @@ Options:
   --align          The text alignment (center, left)
 `;
 
+// disable yargs help
+yargs.help(false);
+
 /**
  * Display help message to stderr and exit with error code 1.
  */
@@ -117,7 +120,7 @@ const main = async () => {
   if (argv.h || argv.help) {
     return help();
   }
-  
+
   try {
     const options = await getOptions();
     const tree = new Tree(options);
